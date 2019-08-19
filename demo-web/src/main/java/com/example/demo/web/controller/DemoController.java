@@ -1,10 +1,13 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.biz.service.DemoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.dao.entity.BookInfo;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @program: demo
@@ -16,11 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("demo")
 public class DemoController {
 
-    @Autowired
+    @Resource
     private DemoService demoService;
 
     @GetMapping("test")
     public String test(){
         return demoService.test();
     }
+
+    @GetMapping("queryBookById/{id}")
+    public BookInfo queryBookById(@PathVariable("id") Integer id){
+        return demoService.queryBookById(id);
+    }
+
 }
