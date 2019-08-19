@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.mapper.BookInfoMapper">
+
+    <resultMap id="baseResultMap" type="com.example.demo.dao.entity.BookInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="pubInfo" jdbcType="VARCHAR" property="pubInfo"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+    </resultMap>
+
+    <sql id="base_column_list">
+        id,book_name,img_url,pubInfo,content
+    </sql>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="baseResultMap">
+        select
+        <include refid="base_column_list"/>
+        from book_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+</mapper>
