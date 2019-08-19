@@ -27,6 +27,7 @@ public class DemoController {
         return demoService.test();
     }
 
+    // 根据id 查询书籍信息
     @GetMapping("queryBookById/{id}")
     public BookInfo queryBookById(@PathVariable("id") Integer id){
         return demoService.queryBookById(id);
