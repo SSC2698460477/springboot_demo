@@ -9,12 +9,13 @@ import javax.annotation.Resource;
 
 /**
  * @program: demo
- * @description: service接口的实现类
+ * @description: service接口的实现类 这个类暂时没有用途了，这个service接口的设计还是不能两全其美，不知道如何
+ *                  实现两者兼得
  * @author: ssc
  * @create: 2019/8/18 22:06
  **/
 @Service
-public class DemoServiceImpl implements DemoService{
+public class DemoServiceImpl extends DemoService {
 
     @Resource
     private BookInfoMapper bookInfoMapper;
@@ -28,6 +29,5 @@ public class DemoServiceImpl implements DemoService{
     public BookInfo queryBookById(Integer id) {
         return bookInfoMapper.selectById(id);
     }
-
 
 }

@@ -1,6 +1,9 @@
 package com.example.demo.biz.service;
 
 import com.example.demo.dao.entity.BookInfo;
+import com.example.demo.dao.mapper.BookInfoMapper;
+
+import javax.annotation.Resource;
 
 /**
  * @program: demo
@@ -8,15 +11,16 @@ import com.example.demo.dao.entity.BookInfo;
  * @author: ssc
  * @create: 2019年8月18日 22:05:05
  **/
-public interface DemoService {
+public class DemoService extends BaseService<BookInfo>{
 
-    public String test();
+    @Resource
+    private BookInfoMapper bookInfoMapper;
 
-    /**
-     * 通过id 来查询书籍信息
-     *
-     * @param id
-     * @return
-     */
-    BookInfo queryBookById(Integer id);
+    public String test() {
+        return bookInfoMapper.selectById(1).toString();
+    }
+
+    public BookInfo queryBookById(Integer id) {
+        return bookInfoMapper.selectById(id);
+    }
 }
