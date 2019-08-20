@@ -2,12 +2,14 @@ package com.example.demo.web.controller;
 
 import com.example.demo.biz.service.DemoService;
 import com.example.demo.dao.entity.BookInfo;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @program: demo
@@ -33,5 +35,10 @@ public class DemoController {
         return demoService.queryBookById(id);
     }
 
-
+    // 分页查询book列表信息
+    @GetMapping("queryBookList")
+    public List<BookInfo> queryBookList(){
+        PageInfo<BookInfo> pageInfo = demoService.queryPageListByWhere(null,1,20);
+        return pageInfo.getList();
+    }
 }
