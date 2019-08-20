@@ -6,18 +6,20 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
         <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
-        <result column="pubInfo" jdbcType="VARCHAR" property="pubInfo"/>
+        <result column="publish_info" jdbcType="VARCHAR" property="publishInfo"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="created" jdbcType="TIMESTAMP" property="created"></result>
+        <result column="updated" jdbcType="TIMESTAMP" property="updated"></result>
     </resultMap>
 
     <sql id="base_column_list">
-        id,book_name,img_url,pubInfo,content
+        id,book_name,img_url,publish_info,content,created,updated
     </sql>
 
     <select id="selectById" parameterType="java.lang.Integer" resultMap="baseResultMap">
         select
         <include refid="base_column_list"/>
-        from book_info
+        from tb_book_info
         where id = #{id,jdbcType=INTEGER}
     </select>
 </mapper>
