@@ -3,6 +3,8 @@ package com.example.demo.web.controller;
 import com.example.demo.biz.service.DemoService;
 import com.example.demo.dao.entity.BookInfo;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import java.util.List;
 @RequestMapping("demo")
 public class DemoController {
 
+    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+
     @Resource
     private DemoService demoService;
 
@@ -38,6 +42,7 @@ public class DemoController {
     // 分页查询book列表信息
     @GetMapping("queryBookList")
     public List<BookInfo> queryBookList(){
+        logger.info("开始调用queryBookList接口");
         PageInfo<BookInfo> pageInfo = demoService.queryPageListByWhere(null,1,20);
         return pageInfo.getList();
     }
