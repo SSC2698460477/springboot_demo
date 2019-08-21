@@ -2,6 +2,9 @@ package com.example.demo.biz.service;
 
 import com.example.demo.dao.entity.BookInfo;
 import com.example.demo.dao.mapper.BookInfoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.common.Mapper;
 
 import javax.annotation.Resource;
 
@@ -11,9 +14,10 @@ import javax.annotation.Resource;
  * @author: ssc
  * @create: 2019年8月18日 22:05:05
  **/
+@Service
 public class DemoService extends BaseService<BookInfo>{
 
-    @Resource
+    @Autowired
     private BookInfoMapper bookInfoMapper;
 
     public String test() {
@@ -22,5 +26,10 @@ public class DemoService extends BaseService<BookInfo>{
 
     public BookInfo queryBookById(Integer id) {
         return bookInfoMapper.selectById(id);
+    }
+
+    @Override
+    public Mapper<BookInfo> getMapper() {
+        return bookInfoMapper;
     }
 }
