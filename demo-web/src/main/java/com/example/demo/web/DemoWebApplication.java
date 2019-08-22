@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "com.example.demo")
 @MapperScan("com.example.demo.dao.mapper")
 public class DemoWebApplication {
-
     public static void main(String[] args){
         SpringApplication.run(DemoWebApplication.class, args);
     }

@@ -35,12 +35,14 @@ public class BookController {
     @GetMapping("queryBookList")
     public ResponseEntity<PageInfo> queryBookList(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                   @RequestParam(value = "rows", defaultValue = "10") Integer rows) {
-        logger.info("开始调用queryBookList接口，page=" + page + " rows=" + rows);
+        if(logger.isInfoEnabled()){
+            logger.info("开始调用queryBookList接口，page= {}，rows={}", page, rows);
+        }
         try {
             PageInfo<BookInfo> pageInfo = bookService.queryPageListByWhere(null, page, rows);
             return ResponseEntity.ok(pageInfo);
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("调用queryBookList接口失败！",e);
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
@@ -53,13 +55,14 @@ public class BookController {
      */
     @GetMapping("queryBookInfoById/{id}")
     public ResponseEntity<BookInfo> queryBookInfoById(@PathVariable(value = "id") Integer id) {
-
-        logger.info("开始调用queryBookInfoById接口，id=" + id);
+        if(logger.isInfoEnabled()){
+            logger.info("开始调用queryBookInfoById接口，id={}", id);
+        }
         try {
             BookInfo bookInfo = bookService.queryById(id);
             return ResponseEntity.ok(bookInfo);
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.error("调用queryBookInfoById接口失败！",e);
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
